@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
-# SPECIFICATION: description of the program
+# AUTHOR: Nathaniel McDorman
+# FILENAME: decision_tree.py
+# SPECIFICATION: This program reads 'contact_lens.csv' and outputs an ID3 decision tree
 # FOR: CS 4200- Assignment #1
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: 30 minutes
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: DO NOT USE ANY ADVANCED PYTHON LIBRARY TO COMPLETE THIS CODE SUCH AS numpy OR pandas. You have to work here only with standard vectors and arrays
@@ -12,6 +12,7 @@
 from sklearn import tree
 import matplotlib.pyplot as plt
 import csv
+num_attributes = 4
 db = []
 X = []
 Y = []
@@ -25,12 +26,18 @@ with open('contact_lens.csv', 'r') as csvfile:
          print(row)
 
 #transform the original training features to numbers and add to the 4D array X. For instance Young = 1, Prepresbyopic = 2, Presbyopic = 3, so X = [[1, 1, 1, 1], [2, 2, 2, 2], ...]]
-#--> add your Python code here
-# X =
+featureDictionary = {'Young' : 1, 'Presbyopic':2, 'Prepresbyopic':3, 'Myope':1, 'Hypermetrope':2, 'Yes':1, 'No':2, 'Normal':1, 'Reduced':2}
+for row in range(len(db)):
+    temp = []
+    for feature in range(0, num_attributes):
+        ##print(db[row][feature])
+        key = db[row][feature]
+        temp.append(int(featureDictionary[key]))
+    X.append(temp)
 
 #transform the original training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
-#--> addd your Python code here
-# Y =
+for row in range(len(db)):
+    Y.append(db[row][4])
 
 #fitting the decision tree to the data
 clf = tree.DecisionTreeClassifier(criterion = 'entropy')
