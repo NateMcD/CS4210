@@ -12,7 +12,6 @@
 from sklearn import tree
 import matplotlib.pyplot as plt
 import csv
-num_attributes = 4
 db = []
 X = []
 Y = []
@@ -27,17 +26,16 @@ with open('contact_lens.csv', 'r') as csvfile:
 
 #transform the original training features to numbers and add to the 4D array X. For instance Young = 1, Prepresbyopic = 2, Presbyopic = 3, so X = [[1, 1, 1, 1], [2, 2, 2, 2], ...]]
 featureDictionary = {'Young' : 1, 'Presbyopic':2, 'Prepresbyopic':3, 'Myope':1, 'Hypermetrope':2, 'Yes':1, 'No':2, 'Normal':1, 'Reduced':2}
+num_attributes = 4
 for row in range(len(db)):
     temp = []
     for feature in range(0, num_attributes):
-        ##print(db[row][feature])
-        key = db[row][feature]
-        temp.append(int(featureDictionary[key]))
+        temp.append(int(featureDictionary[db[row][feature]]))
     X.append(temp)
 
 #transform the original training classes to numbers and add to the vector Y. For instance Yes = 1, No = 2, so Y = [1, 1, 2, 2, ...]
 for row in range(len(db)):
-    Y.append(db[row][4])
+    Y.append(int(featureDictionary[db[row][4]]))
 
 #fitting the decision tree to the data
 clf = tree.DecisionTreeClassifier(criterion = 'entropy')
