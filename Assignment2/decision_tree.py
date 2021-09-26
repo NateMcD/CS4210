@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------
 # AUTHOR: Nate McDorman
-# FILENAME: Decision Tree script file for Assignment 2, problem 2
+# FILENAME: decision_tree.py
 # SPECIFICATION: This program uses training data and then tests itself against test data
 # FOR: CS 4210- Assignment #2
 # TIME SPENT: 1 hour
