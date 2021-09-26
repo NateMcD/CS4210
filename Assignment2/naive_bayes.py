@@ -70,14 +70,15 @@ for i in range(len(testX)):
     testY.append(clf.predict_proba([testX[i]])[0])
     output = 1 if testY[i][0] > 0.75 else 0
     confidence = testY[i][0] if output == 1 else testY[i][1]
-    if testY[i][0] > 0.75 or testY[i][1] > 0.75:
+    outputStr = "Yes" if output == 1 else "No"
+    if testY[i][0] >= 0.75 or testY[i][1] >= 0.75:
         print(str(testFileDB[i][0]).ljust(15)
               + str(testFileDB[i][1]).ljust(15)
               + str(testFileDB[i][2]).ljust(15)
               + str(testFileDB[i][3]).ljust(15)
               + str(testFileDB[i][4]).ljust(15)
-              + str(output).ljust(15)
-              + str(confidence).ljust(15))
+              + outputStr.ljust(15)
+              + str(round(confidence, 2)).ljust(15))
 
 
 
